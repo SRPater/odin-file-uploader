@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx --env-file-.env index.ts"
+    "dev": "tsx --env-file-.env src/index.ts"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,12 @@
   },
   "homepage": "https://github.com/SRPater/odin-file-uploader#readme",
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^5.0.6",
+    "@types/express-session": "^1.18.2",
     "@types/node": "^25.6.0",
+    "@types/passport": "^1.0.17",
+    "@types/passport-local": "^1.0.38",
     "@types/pg": "^8.20.0",
     "prisma": "^7.7.0",
     "tsx": "^4.21.0",
@@ -28,7 +33,13 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.7.0",
     "@prisma/client": "^7.7.0",
+    "@quixo3/prisma-session-store": "^3.1.19",
+    "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "passport": "^0.7.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.20.0"
   }
 }
