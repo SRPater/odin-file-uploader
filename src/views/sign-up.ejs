@@ -1,0 +1,36 @@
+<%- include('partials/header') %>
+
+<h2>Sign Up</h2>
+<p>Create an account now to start uploading files!</p>
+<form action="/sign-up" method="POST">
+  <% if (locals.errors && errors.length > 0) { %>
+    <ul class="form-errors">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input
+      type="text"
+      name="username"
+      id="username"
+      value="<%= locals.prevData ? prevData.username : '' %>"
+      required>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+  </div>
+  <div class="form-group">
+    <label for="confirm">Confirm Password</label>
+    <input type="password" name="confirm" id="confirm" required>
+  </div>
+  <button type="submit" class="button-cyan">Sign Up</button>
+  <p class="form-footer">
+    Already have an account? Log in <a href="/">here</a>.
+  </p>
+</form>
+
+<%- include('partials/footer') %>

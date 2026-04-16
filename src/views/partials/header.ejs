@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project: File Uploader | The Odin Project</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <nav>
+    <h1 class="nav-brand">
+      <a href="/">File Uploader</a>
+    </h1>
+    <ul class="nav-links">
+      <% if (locals.user) { %>
+        <li><%= user.username %></li>
+        <li><a href="/log-out" class="button-crimson">Log Out</a></li>
+      <% } else { %>
+        <li><a href="/sign-up" class="button-crimson">Sign Up</a></li>
+      <% } %>
+    </ul>
+  </nav>
+  <main>
