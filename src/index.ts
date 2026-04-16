@@ -4,6 +4,7 @@ import express from 'express';
 import session from 'express-session';
 import passport from 'passport';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
+import flash from 'connect-flash';
 
 import { prisma } from './lib/prisma';
 import authRouter from './routes/authRouter';
@@ -36,6 +37,7 @@ app.use(
   })
 );
 
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -47,7 +49,9 @@ app.use((req, res, next) => {
 app.use('/', authRouter);
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', {
+    errors: req.flash('error'),
+  });
 });
 
 const PORT = process.env.PORT || 3000;

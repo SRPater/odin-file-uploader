@@ -20,6 +20,7 @@
   "homepage": "https://github.com/SRPater/odin-file-uploader#readme",
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
+    "@types/connect-flash": "^0.0.40",
     "@types/express": "^5.0.6",
     "@types/express-session": "^1.18.2",
     "@types/express-validator": "^2.20.33",
@@ -36,6 +37,7 @@
     "@prisma/client": "^7.7.0",
     "@quixo3/prisma-session-store": "^3.1.19",
     "bcryptjs": "^3.0.3",
+    "connect-flash": "^0.1.1",
     "dotenv": "^17.4.2",
     "ejs": "^5.0.2",
     "express": "^5.2.1",

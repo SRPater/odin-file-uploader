@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { body, validationResult } from 'express-validator';
 import bcrypt from 'bcryptjs';
+import passport from 'passport';
 import { Prisma } from '../generated/prisma/client';
 import { prisma } from '../lib/prisma';
 
@@ -69,6 +70,15 @@ export const signUpPost = [
     }
   },
 ];
+
+export const logInPost = passport.authenticate(
+  'local',
+  {
+    successRedirect: '/',
+    failureRedirect: '/',
+    failureFlash: true,
+  }
+);
 
 export const logOutGet = (req: Request, res: Response, next: NextFunction) => {
   req.logout((err) => {
