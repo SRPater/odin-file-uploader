@@ -149,6 +149,29 @@ input:focus {
   border-color: var(--color-cyan);
 }
 
+input[type="file"] {
+  border: none;
+  height: auto;
+  padding: 1rem 0;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: var(--color-crimson);
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+  color: var(--color-bg);
+  margin-right: 1rem;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: var(--color-crimson-hover);
+}
+
 /* Main Content Styles */
 main {
   padding: 2rem;

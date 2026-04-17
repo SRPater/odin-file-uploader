@@ -8,6 +8,7 @@ import flash from 'connect-flash';
 
 import { prisma } from './lib/prisma';
 import authRouter from './routes/authRouter';
+import fileRouter from './routes/fileRouter';
 import './config/passport';
 
 const app = express();
@@ -46,6 +47,7 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/files', fileRouter);
 app.use('/', authRouter);
 
 app.get('/', (req, res) => {

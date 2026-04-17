@@ -2,10 +2,11 @@
 
 <% if (locals.user) { %>
   <h2>Welcome back, <%= user.username %>!</h2>
-  <p>Browse out your uploaded files below.</p>
+  <p>Browse your uploaded files below.</p>
 <% } else { %>
   <h2>Welcome to the File Uploader!</h2>
   <p>Log in now to start uploading files.</p>
+
   <form action="/log-in" method="POST">
     <% if (errors && errors.length > 0) { %>
       <ul class="form-errors">

@@ -13,6 +13,7 @@
     </h1>
     <ul class="nav-links">
       <% if (locals.user) { %>
+        <li><a href="/files/upload" class="button-cyan">Upload File</a></li>
         <li><%= user.username %></li>
         <li><a href="/log-out" class="button-crimson">Log Out</a></li>
       <% } else { %>

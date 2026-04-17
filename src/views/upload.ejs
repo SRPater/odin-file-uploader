@@ -1,0 +1,29 @@
+<%- include('partials/header') %>
+
+<h2>Upload a File</h2>
+<p>Select the file you want to upload with the form below.</p>
+
+<form action="/files/upload" method="POST" enctype="multipart/form-data">
+  <% if (locals.errors && errors.length > 0) { %>
+    <ul class="form-errors">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+  <div class="form-group">
+    <label for="file">File to Upload (max size: 10MB)</label>
+    <input
+      type="file"
+      name="file"
+      id="file"
+      accept="image/*,video/*,audio/*,text/*,.pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx"
+      required>
+  </div>
+  <button type="submit" class="button-cyan">Upload</button>
+  <p class="form-footer">
+    <a href="/">Back to your files</a>
+  </p>
+</form>
+
+<%- include('partials/footer') %>

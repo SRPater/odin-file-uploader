@@ -3,3 +3,6 @@ node_modules/
 
 # Prisma
 /src/generated/prisma
+
+# Uploaded files
+/uploads
