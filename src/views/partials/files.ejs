@@ -1,0 +1,35 @@
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td>Date Uploaded</td>
+      <td>Filesize</td>
+      <td></td>
+    </tr>
+  </thead>
+  <tbody>
+    <% files.forEach(file => { %>
+      <td><%= file.name %></td>
+      <td><%= file.createdAt.toLocaleDateString('en-GB', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      }) %></td>
+      <td>
+        <% if (file.size >= 1024 * 1024) { %>
+          <%= (file.size / (1024 * 1024)).toFixed(2) + ' MB' %>
+        <% } else if (file.size >= 1024) { %>
+          <%= (file.size / 1024).toFixed(2) + ' KB' %>
+        <% } else { %>
+          <%= file.size.toFixed(2) + ' B' %>
+        <% } %>
+      </td>
+      <td>
+        <a href="/files/download/<%= file.id %>">
+          Download
+        </a>
+      </td>
+    <% }) %>
+  </tbody>
+</table>

@@ -3,6 +3,15 @@
 <% if (locals.user) { %>
   <h2>Welcome back, <%= user.username %>!</h2>
   <p>Browse your uploaded files below.</p>
+
+  <div class="file-container">
+    <% if (locals.files && files.length > 0) { %>
+      <%- include('partials/files') %>
+    <% } else { %>
+      <p>You haven't uploaded any files yet.</p>
+      <a href="/files/upload" class="button-cyan">Upload File</a>
+    <% } %>
+  </div>
 <% } else { %>
   <h2>Welcome to the File Uploader!</h2>
   <p>Log in now to start uploading files.</p>

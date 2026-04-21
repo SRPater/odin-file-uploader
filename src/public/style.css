@@ -5,6 +5,9 @@
   --color-cyan-hover: #00a3a3;
   --color-bg: #f4f4f4;
   --color-text: #333;
+  --color-white: #fff;
+  --color-white-hover: #ddd;
+  --color-shadow: rgba(0, 0, 0, 0.1);
 }
 
 * {
@@ -48,16 +51,18 @@ nav {
 }
 
 /* Button Styles */
-.button-crimson {
+.button-crimson,
+.button-cyan {
   border: none;
-  background-color: var(--color-crimson);
   color: var(--color-bg);
   transition: background-color 0.2s ease;
   padding: 0.5rem 1rem;
   border-radius: 10px;
   font-weight: 700;
   cursor: pointer;
-  height: 2rem;
+}
+.button-crimson {
+  background-color: var(--color-crimson);
 }
 
 .button-crimson:hover {
@@ -65,14 +70,7 @@ nav {
 }
 
 .button-cyan {
-  border: none;
   background-color: var(--color-cyan);
-  color: var(--color-bg);
-  transition: background-color 0.2s ease;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  font-weight: 700;
-  cursor: pointer;
 }
 
 .button-cyan:hover {
@@ -81,10 +79,10 @@ nav {
 
 /* Form Styles */
 form {
-  background-color: #fff;
+  background-color: var(--color-white);
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 1px var(--color-shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -185,4 +183,52 @@ main {
 
 h2 {
   color: var(--color-crimson);
+}
+
+.file-container {
+  background-color: var(--color-white);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 2px 2px 1px var(--color-shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 1080px;
+}
+
+/* File Table Styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table a {
+  font-weight: 700;
+  color: var(--color-crimson);
+}
+
+table a:hover {
+  color: var(--color-crimson-hover);
+}
+
+thead {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: var(--color-crimson);
+}
+
+tr:hover {
+  background-color: var(--color-white-hover);
+}
+
+td {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid var(--color-white-hover);
+}
+
+td:last-child {
+  text-align: center;
 }

@@ -7,6 +7,7 @@ import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 import flash from 'connect-flash';
 
 import { prisma } from './lib/prisma';
+import indexRouter from './routes/indexRouter';
 import authRouter from './routes/authRouter';
 import fileRouter from './routes/fileRouter';
 import './config/passport';
@@ -18,6 +19,7 @@ app.set('views', path.join(import.meta.dirname, 'views'));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(import.meta.dirname, 'public')));
+app.use(express.static(path.join(import.meta.dirname, '..')));
 
 app.use(
   session({
@@ -49,12 +51,7 @@ app.use((req, res, next) => {
 
 app.use('/files', fileRouter);
 app.use('/', authRouter);
-
-app.get('/', (req, res) => {
-  res.render('index', {
-    errors: req.flash('error'),
-  });
-});
+app.use('/', indexRouter);
 
 const PORT = process.env.PORT || 3000;
 

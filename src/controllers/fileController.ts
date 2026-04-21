@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import multer from 'multer';
 import fs from 'fs';
 import { Prisma } from '../generated/prisma/client';
+import type { User } from '../generated/prisma/client';
 import { prisma } from '../lib/prisma';
 import { upload } from '../config/multer';
 
@@ -84,4 +85,21 @@ export const uploadPost = async (req: Request, res: Response) => {
       res.render('upload', { errors: [{ msg }] });
     }
   });
+};
+
+export const downloadGet = async (req: Request, res: Response) => {
+  if (!req.isAuthenticated()) return res.redirect('/');
+
+  const { id } = req.params;
+  const fileId = parseInt(id as string, 10);
+  const user = req.user as User;
+  const file = await prisma.file.findUnique({
+    where: { id: fileId },
+  });
+
+  if (!file || file.ownerId !== user.id) {
+    return res.redirect('/');
+  }
+
+  res.download(file.url, file.name);
 };
