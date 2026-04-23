@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import multer from 'multer';
-import fs from 'fs';
+import { unlink } from 'node:fs/promises';
 import { Prisma } from '../generated/prisma/client';
 import type { User } from '../generated/prisma/client';
 import { prisma } from '../lib/prisma';
@@ -65,14 +65,10 @@ export const uploadPost = async (req: Request, res: Response) => {
       res.redirect('/');
     } catch (err) {
       if (req.file?.path) {
-        fs.unlink(req.file.path, (unlinkErr) => {
-          if (unlinkErr) {
-            console.error('Failed to delete ghost file:', unlinkErr);
-          }
-        });
+        await unlink(req.file.path)
+          .catch(e => console.error("Ghost file cleanup failed:", e));
       }
 
-      console.error(err);
       let msg = 'An error occurred while saving the file.';
 
       if (
@@ -94,12 +90,42 @@ export const downloadGet = async (req: Request, res: Response) => {
   const fileId = parseInt(id as string, 10);
   const user = req.user as User;
   const file = await prisma.file.findUnique({
-    where: { id: fileId },
+    where: {
+      id: fileId,
+      ownerId: user.id,
+    },
   });
 
-  if (!file || file.ownerId !== user.id) {
-    return res.redirect('/');
-  }
-
+  if (!file) return res.redirect('/');
   res.download(file.url, file.name);
+};
+
+export const deletePost = async (req: Request, res: Response) => {
+  if (!req.isAuthenticated()) return res.redirect('/');
+
+  const { id } = req.params;
+  const fileId = parseInt(id as string, 10);
+  const user = req.user as User;
+
+  try {
+    const file = await prisma.file.findUnique({
+      where: {
+        id: fileId,
+        ownerId: user.id,
+      },
+    });
+
+    if (!file) return res.redirect('/');
+    await unlink(file.url)
+      .catch(e => console.error("Physical file already gone:", e));
+    
+    await prisma.file.delete({
+      where: { id: fileId },
+    });
+
+    res.redirect('/');
+  } catch (err) {
+    console.error(err);
+    res.redirect('/');
+  }
 };

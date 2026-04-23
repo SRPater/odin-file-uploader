@@ -2,7 +2,7 @@
 
 <h2>Sign Up</h2>
 <p>Create an account now to start uploading files!</p>
-<form action="/sign-up" method="POST">
+<form action="/sign-up" method="POST" class="auth-form">
   <% if (locals.errors && errors.length > 0) { %>
     <ul class="form-errors">
       <% errors.forEach(error => { %>

@@ -9,27 +9,37 @@
   </thead>
   <tbody>
     <% files.forEach(file => { %>
-      <td><%= file.name %></td>
-      <td><%= file.createdAt.toLocaleDateString('en-GB', {
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      }) %></td>
-      <td>
-        <% if (file.size >= 1024 * 1024) { %>
-          <%= (file.size / (1024 * 1024)).toFixed(2) + ' MB' %>
-        <% } else if (file.size >= 1024) { %>
-          <%= (file.size / 1024).toFixed(2) + ' KB' %>
-        <% } else { %>
-          <%= file.size.toFixed(2) + ' B' %>
-        <% } %>
-      </td>
-      <td>
-        <a href="/files/download/<%= file.id %>">
-          Download
-        </a>
-      </td>
+      <tr>
+        <td class="filename">
+          <span class="icon <%= file.iconClass %>"></span>
+          <%= file.name %>
+        </td>
+        <td><%= file.createdAt.toLocaleDateString('en-GB', {
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        }) %></td>
+        <td>
+          <% if (file.size >= 1024 * 1024) { %>
+            <%= (file.size / (1024 * 1024)).toFixed(2) + ' MB' %>
+          <% } else if (file.size >= 1024) { %>
+            <%= (file.size / 1024).toFixed(2) + ' KB' %>
+          <% } else { %>
+            <%= file.size.toFixed(2) + ' B' %>
+          <% } %>
+        </td>
+        <td class="file-actions">
+          <a href="/files/download/<%= file.id %>">
+            <span class="icon download"></span>
+          </a>
+          <form action="/files/delete/<%= file.id %>" method="POST">
+            <button type="submit" class="icon-button">
+              <span class="icon delete"></span>
+            </button>
+          </form>
+        </td>
+      </tr>
     <% }) %>
   </tbody>
 </table>

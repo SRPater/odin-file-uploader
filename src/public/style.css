@@ -78,7 +78,7 @@ nav {
 }
 
 /* Form Styles */
-form {
+.auth-form {
   background-color: var(--color-white);
   padding: 2rem;
   border-radius: 10px;
@@ -91,7 +91,7 @@ form {
   max-width: 500px;
 }
 
-form button {
+.auth-form button {
   align-self: center;
   width: 75%;
   height: 2.5rem;
@@ -204,15 +204,6 @@ table {
   border-collapse: collapse;
 }
 
-table a {
-  font-weight: 700;
-  color: var(--color-crimson);
-}
-
-table a:hover {
-  color: var(--color-crimson-hover);
-}
-
 thead {
   font-weight: 700;
   text-transform: uppercase;
@@ -231,4 +222,78 @@ td {
 
 td:last-child {
   text-align: center;
+}
+
+.filename {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.file-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.file-actions a {
+  display: flex;
+}
+
+.file-actions form {
+  display: inline;
+}
+
+.icon-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+}
+
+.icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+}
+
+.file-image {
+  background-image: url('./icons/file-image.svg');
+}
+
+.file-video {
+  background-image: url('./icons/file-video.svg');
+}
+
+.file-music {
+  background-image: url('./icons/file-music.svg');
+}
+
+.file-text {
+  background-image: url('./icons/file-text.svg');
+}
+
+.file-spreadsheet {
+  background-image: url('./icons/file-spreadsheet.svg');
+}
+
+.file-chart-column {
+  background-image: url('./icons/file-chart-column.svg');
+}
+
+.download {
+  background-image: url('./icons/arrow-down-to-line.svg');
+  transition: background-image 0.2s ease;
+}
+
+.download:hover {
+  background-image: url('./icons/arrow-down-to-line-hover.svg');
+}
+
+.delete {
+  background-image: url('./icons/trash-2.svg');
+  transition: background-image 0.2s ease;
+}
+
+.delete:hover {
+  background-image: url('./icons/trash-2-hover.svg');
 }
