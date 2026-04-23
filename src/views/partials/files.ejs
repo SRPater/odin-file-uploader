@@ -24,7 +24,7 @@
           <% if (file.size >= 1024 * 1024) { %>
             <%= (file.size / (1024 * 1024)).toFixed(2) + ' MB' %>
           <% } else if (file.size >= 1024) { %>
-            <%= (file.size / 1024).toFixed(2) + ' KB' %>
+            <%= (file.size / 1024).toFixed(2) + ' kB' %>
           <% } else { %>
             <%= file.size.toFixed(2) + ' B' %>
           <% } %>
