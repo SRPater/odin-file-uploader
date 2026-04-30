@@ -1,0 +1,28 @@
+<%- include('partials/header') %>
+
+<h2>Create a Folder</h2>
+
+<form action="/folders/create" method="POST" class="auth-form">
+  <% if (locals.errors && errors.length > 0) { %>
+    <ul class="form-errors">
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      value="<%= locals.prevData ? prevData.name : '' %>"
+      required
+    >
+  </div>
+  <button type="submit" class="button-cyan">Create Folder</button>
+  <p class="form-footer">
+    <a href="/">Back to your files</a>
+  </p>
+</form>

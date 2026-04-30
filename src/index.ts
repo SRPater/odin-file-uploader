@@ -10,6 +10,7 @@ import { prisma } from './lib/prisma';
 import indexRouter from './routes/indexRouter';
 import authRouter from './routes/authRouter';
 import fileRouter from './routes/fileRouter';
+import folderRouter from './routes/folderRouter';
 import './config/passport';
 
 const app = express();
@@ -50,6 +51,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/files', fileRouter);
+app.use('/folders', folderRouter);
 app.use('/', authRouter);
 app.use('/', indexRouter);
 

@@ -7,8 +7,27 @@ export const indexGet = async (req: Request, res: Response) => {
 
   if (req.isAuthenticated()) {
     const user = req.user as User;
+
+    const rootFolder = await prisma.folder.findFirst({
+      where: {
+        ownerId: user.id,
+        name: 'root',
+      },
+    });
+
+    const folders = await prisma.folder.findMany({
+      where: {
+        ownerId: user.id,
+        name: { not: 'root' },
+      },
+      orderBy: { name: 'asc' },
+    });
+
     const rawFiles = await prisma.file.findMany({
-      where: { ownerId: user.id },
+      where: {
+        ownerId: user.id,
+        folderId: rootFolder?.id,
+      },
       orderBy: { createdAt: 'desc' },
     });
 
@@ -38,6 +57,7 @@ export const indexGet = async (req: Request, res: Response) => {
 
     return res.render('index', {
       errors,
+      folders,
       files,
     });
   }

@@ -198,6 +198,12 @@ h2 {
   max-width: 1080px;
 }
 
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
 /* File Table Styles */
 table {
   width: 100%;
@@ -209,6 +215,11 @@ thead {
   text-transform: uppercase;
   font-size: 0.9rem;
   color: var(--color-crimson);
+}
+
+thead td:last-child a {
+  display: flex;
+  justify-content: center;
 }
 
 tr:hover {
@@ -229,9 +240,19 @@ td:last-child {
   gap: 0.5rem;
 }
 
+.filename a {
+  color: var(--color-crimson);
+  transition: color 0.2s ease;
+}
+
+.filename a:hover {
+  color: var(--color-crimson-hover);
+}
+
 .file-actions {
   display: flex;
   gap: 0.5rem;
+  justify-content: center;
 }
 
 .file-actions a {
@@ -296,4 +317,17 @@ td:last-child {
 
 .delete:hover {
   background-image: url('./icons/trash-2-hover.svg');
+}
+
+.folder-plus {
+  background-image: url('./icons/folder-plus.svg');
+  transition: background-image 0.2s ease;
+}
+
+.folder-plus:hover {
+  background-image: url('./icons/folder-plus-hover.svg');
+}
+
+.folder {
+  background-image: url('./icons/folder.svg');
 }

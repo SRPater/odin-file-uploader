@@ -4,10 +4,32 @@
       <td>Name</td>
       <td>Date Uploaded</td>
       <td>Filesize</td>
-      <td></td>
+      <td>
+        <a href="/folders/create">
+          <span class="icon folder-plus"></span>
+        </a>
+      </td>
     </tr>
   </thead>
   <tbody>
+    <% folders.forEach(folder => { %>
+      <tr>
+        <td class="filename">
+          <span class="icon folder"></span>
+          <a href="/folders/<%= folder.id %>"><%= folder.name %></a>
+        </td>
+        <td></td>
+        <td></td>
+        <td class="file-actions">
+          <form action="/folders/delete/<%= folder.id %>" method="POST">
+            <button type="submit" class="icon-button">
+              <span class="icon delete"></span>
+            </button>
+          </form>
+        </td>
+      </tr>
+    <% }) %>
+
     <% files.forEach(file => { %>
       <tr>
         <td class="filename">

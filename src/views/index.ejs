@@ -5,11 +5,17 @@
   <p>Browse your uploaded files below.</p>
 
   <div class="file-container">
-    <% if (locals.files && files.length > 0) { %>
+    <% if (
+      (locals.folders && folders.length > 0) ||
+      (locals.files && files.length > 0)
+    ) { %>
       <%- include('partials/files') %>
     <% } else { %>
-      <p>You haven't uploaded any files yet.</p>
-      <a href="/files/upload" class="button-cyan">Upload File</a>
+      <p>You haven't uploaded any files or created any folders yet.</p>
+      <div class="button-group">
+        <a href="/files/upload" class="button-cyan">Upload File</a>
+        <a href="/folders/create" class="button-cyan">Create Folder</a>
+      </div>
     <% } %>
   </div>
 <% } else { %>
